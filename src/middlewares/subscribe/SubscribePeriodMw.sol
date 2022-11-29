@@ -4,7 +4,7 @@ pragma solidity 0.8.14;
 
 import { IERC20 } from "openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 import { ERC721 } from "../../dependencies/solmate/ERC721.sol";
-import { SafeERC20 } from "openzeppelin-contracts/contracts/token/ERC20/utils/SafeERC20.sol";
+import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
 import { ISubscribeMiddleware } from "../../interfaces/ISubscribeMiddleware.sol";
 import { ICyberEngine } from "../../interfaces/ICyberEngine.sol";
@@ -33,8 +33,8 @@ contract SubscribePaidMw is ISubscribeMiddleware, FeeMw {
         address currency,
         bool nftRequired,
         address nftAddress,
-        uint64 subscribeTime,
-        uint64 period
+        uint256 subscribeTime,
+        uint256 period
     );
 
     /*//////////////////////////////////////////////////////////////
@@ -47,8 +47,8 @@ contract SubscribePaidMw is ISubscribeMiddleware, FeeMw {
         address currency;
         bool nftRequired;
         address nftAddress;
-        uint64 subscribeTime;
-        uint64 period;
+        uint256 subscribeTime;
+        uint256 period;
     }
 
     mapping(address => mapping(uint256 => PaidSubscribeData))
@@ -80,8 +80,8 @@ contract SubscribePaidMw is ISubscribeMiddleware, FeeMw {
             address currency,
             bool nftRequired,
             address nftAddress,
-            uint64 period
-        ) = abi.decode(data, (uint256, address, address, bool, address, uint64));
+            uint256 period
+        ) = abi.decode(data, (uint256, address, address, bool, address, uint256));
 
         require(amount != 0, "INVALID_AMOUNT");
         require(recipient != address(0), "INVALID_ADDRESS");
