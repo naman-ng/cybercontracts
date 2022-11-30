@@ -19,6 +19,9 @@ Location: https://github.com/naman-ng/cybercontracts/blob/main/src/middlewares/s
 # Usecase and benefits
 The existing subscribe middleware allowed the user to do 1 time subscribe i.e. you subscibe for once and it's valid for lifetime but these new middlewares allows user to subscribe to people for some specific period of time according to user's wish. This can benefit both user and creator immensely. Users will get to 'try out' the content by paying less and Creators will eventually see great increase in their sales and income.
 
+# NOTE
+I have tried to make the new Middlewares most synchronizable with the codebase so that it can easily be reviewed and pushed.
+
 
 </br>
 </br>
