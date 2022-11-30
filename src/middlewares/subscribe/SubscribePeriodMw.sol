@@ -4,7 +4,7 @@ pragma solidity 0.8.14;
 
 import { IERC20 } from "openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 import { ERC721 } from "../../dependencies/solmate/ERC721.sol";
-import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import { SafeERC20 } from "openzeppelin-contracts/contracts/token/ERC20/utils/SafeERC20.sol";
 
 import { ISubscribeMiddleware } from "../../interfaces/ISubscribeMiddleware.sol";
 import { ICyberEngine } from "../../interfaces/ICyberEngine.sol";
@@ -154,7 +154,6 @@ contract SubscribePaidMw is ISubscribeMiddleware, FeeMw {
 
     /**
      * @notice Tells if the subscription has expired or not.
-     *
      * @param profileId The profile ID.
      * @return boolean The subscription is valid or not.
      */
