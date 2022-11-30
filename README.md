@@ -1,5 +1,28 @@
-# Subscribe for any time Period - Middleware LW3 bounty
-I have made a middleware which allows user to subscribe the creator for any time period. 
+# Cyberconnnect Subscribe Middlewares I have made
+## 1. SubscribePeriodMw
+Allows user to subscribe for any time period </br>
+Location: https://github.com/naman-ng/cybercontracts/blob/main/src/middlewares/subscribe/SubscribePeriodMw.sol
+
+## 2. SubscribeMonthlyPaidMw
+Allows user to subscribe for 1 month time period </br>
+Location: https://github.com/naman-ng/cybercontracts/blob/main/src/middlewares/subscribe/SubscribeMonthlyPaidMw.sol
+
+## 3. SubscribeSemiAnnualPaidMw
+Allows user to subscribe for 6 months time period </br>
+Location: https://github.com/naman-ng/cybercontracts/blob/main/src/middlewares/subscribe/SubscribeSemiAnnualPaidMw.sol
+
+## 4. SubscribeYearlyPaidMw
+Allows user to subscribe for any time period </br>
+Location: https://github.com/naman-ng/cybercontracts/blob/main/src/middlewares/subscribe/SubscribeYearlyPaidMw.sol
+
+
+# Usecase and benefits
+The existing subscribe middleware allowed the user to do 1 time subscribe i.e. you subscibe for once and it's valid for lifetime but these new middlewares allows user to subscribe to people for some specific period of time according to user's wish. This can benefit both user and creator immensely. Users will get to 'try out' the content by paying less and Creators will eventually see great increase in their sales and income.
+
+
+</br>
+</br>
+</br>
 
 [![test](https://github.com/cyberconnecthq/cybercontracts/actions/workflows/test.yml/badge.svg)](https://github.com/cyberconnecthq/cybercontracts/actions/workflows/test.yml)
 

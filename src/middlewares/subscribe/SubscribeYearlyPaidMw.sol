@@ -16,10 +16,11 @@ import { FeeMw } from "../base/FeeMw.sol";
 /**
  * @title  Subscribe Middleware for different time periods
  * @author Naman Garg
- * @notice This contract is a middleware to only allow users to subscribe for a specific time period when they pay a certain fee to the profile owner.
+ * @notice This contract is a middleware to allow users to subscribe for a 1 year time period when they pay a certain fee to the profile owner.
  */
 contract SubscribePaidMw is ISubscribeMiddleware, FeeMw {
     using SafeERC20 for IERC20;
+    uint24 internal immutable TIME_PERIOD = 1 years;
 
     /*//////////////////////////////////////////////////////////////
                                 EVENT
@@ -33,8 +34,7 @@ contract SubscribePaidMw is ISubscribeMiddleware, FeeMw {
         address currency,
         bool nftRequired,
         address nftAddress,
-        uint256 subscribeTime,
-        uint256 period
+        uint256 subscribeTime
     );
 
     /*//////////////////////////////////////////////////////////////
@@ -48,7 +48,6 @@ contract SubscribePaidMw is ISubscribeMiddleware, FeeMw {
         bool nftRequired;
         address nftAddress;
         uint256 subscribeTime;
-        uint256 period;
     }
 
     mapping(address => mapping(uint256 => PaidSubscribeData))
@@ -79,9 +78,8 @@ contract SubscribePaidMw is ISubscribeMiddleware, FeeMw {
             address recipient,
             address currency,
             bool nftRequired,
-            address nftAddress,
-            uint256 period
-        ) = abi.decode(data, (uint256, address, address, bool, address, uint256));
+            address nftAddress
+        ) = abi.decode(data, (uint256, address, address, bool, address));
 
         require(amount != 0, "INVALID_AMOUNT");
         require(recipient != address(0), "INVALID_ADDRESS");
@@ -93,7 +91,6 @@ contract SubscribePaidMw is ISubscribeMiddleware, FeeMw {
         _paidSubscribeData[msg.sender][profileId].nftRequired = nftRequired;
         _paidSubscribeData[msg.sender][profileId].nftAddress = nftAddress;
         _paidSubscribeData[msg.sender][profileId].subscribeTime = block.timestamp;
-        _paidSubscribeData[msg.sender][profileId].period = period;
 
         emit SubscribePaidMwSet(
             msg.sender,
@@ -104,7 +101,6 @@ contract SubscribePaidMw is ISubscribeMiddleware, FeeMw {
             nftRequired,
             nftAddress,
             block.timestamp,
-            period
         );
         return new bytes(0);
     }
@@ -170,7 +166,7 @@ contract SubscribePaidMw is ISubscribeMiddleware, FeeMw {
             .getSubscribeNFT(profileId).balanceOf(subscriber);
 
         return (ERC721(essenceOwnerSubscribeNFTBalance) != 0 && 
-            (_paidSubscribeData[msg.sender][profileId].period  > duration));
+            (TIME_PERIOD > duration));
     }
 
     /// @inheritdoc ISubscribeMiddleware
